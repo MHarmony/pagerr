@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MHarmony/pagerr/compare/v1.1.0...v1.2.0) (2022-07-02)
+
+
+### Features
+
+* **api:** health module ([022481f](https://github.com/MHarmony/pagerr/commit/022481fd6cc6bf3494f53e7597d4d764f5e78648))
+
 # [1.1.0](https://github.com/MHarmony/pagerr/compare/v1.0.0...v1.1.0) (2022-07-02)
 
 
