@@ -16,7 +16,7 @@ Please make sure to read the [Issue Reporting Checklist](https://github.com/MHar
 
 ## Stay in touch
 
-- Author - [Michael H](https://mharmony.io)
+- Author - [MHarmony](https://mharmony.io)
 
 ## License
 
