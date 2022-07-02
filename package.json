@@ -49,6 +49,7 @@
     "@nestjs/jwt": "^8.0.1",
     "@nestjs/passport": "^8.2.2",
     "@nestjs/platform-express": "^8.4.7",
+    "@nestjs/terminus": "^8.1.0",
     "@nestjs/throttler": "^2.0.1",
     "@nestjs/typeorm": "^8.1.4",
     "@nrwl/angular": "14.4.0",

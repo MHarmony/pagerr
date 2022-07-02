@@ -25,6 +25,7 @@ specifiers:
   '@nestjs/passport': ^8.2.2
   '@nestjs/platform-express': ^8.4.7
   '@nestjs/schematics': ^8.0.11
+  '@nestjs/terminus': ^8.1.0
   '@nestjs/testing': ^8.4.7
   '@nestjs/throttler': ^2.0.1
   '@nestjs/typeorm': ^8.1.4
@@ -107,6 +108,7 @@ dependencies:
   '@nestjs/jwt': 8.0.1_@nestjs+common@8.4.7
   '@nestjs/passport': 8.2.2_ajebcnomotz225cztrmzhvaeiq
   '@nestjs/platform-express': 8.4.7_7tsmhnugyerf5okgqzer2mfqme
+  '@nestjs/terminus': 8.1.0_is5nhplidwfwwktrrhg7r46vx4
   '@nestjs/throttler': 2.0.1_zysgbzrbqurgi5bpxpfkrj3lie
   '@nestjs/typeorm': 8.1.4_v55vbaqfiuh74lqh4ufijjkm5q
   '@nrwl/angular': 14.4.0_bluerxkuabels2bsqghr2qh4za
@@ -3619,6 +3621,21 @@ packages:
       - chokidar
     dev: true
 
+  /@nestjs/terminus/8.1.0_is5nhplidwfwwktrrhg7r46vx4:
+    resolution: {integrity: sha512-ZX+0zFYwJSs+ArszxJnYB0ESUnp266UthfOGkLfCBQpYA9nNmHTUHjAju6Mr9JzeL4Iv4W1phhkSyaLxNR2a8A==}
+    peerDependencies:
+      '@nestjs/common': 8.x
+      '@nestjs/core': 8.x
+      reflect-metadata: 0.1.x
+      rxjs: 7.x
+    dependencies:
+      '@nestjs/common': 8.4.7_rfiwcbffiuhkhhtbrxxsyxpam4
+      '@nestjs/core': 8.4.7_fkqgj3xrohk2pflugljc4sz7ea
+      check-disk-space: 3.3.0
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.5
+    dev: false
+
   /@nestjs/testing/8.4.7_yg656aic4dli3q2c2sx4xyqza4:
     resolution: {integrity: sha512-aedpeJFicTBeiTCvJWUG45WMMS53f5eu8t2fXsfjsU1t+WdDJqYcZyrlCzA4dL1B7MfbqaTURdvuVVHTmJO8ag==}
     peerDependencies:
@@ -6407,6 +6424,11 @@ packages:
 
   /charenc/0.0.2:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
+    dev: false
+
+  /check-disk-space/3.3.0:
+    resolution: {integrity: sha512-Hvr+Nr01xSSvuCpXvJ8oZ2iXjIu4XT3uHbw3g7F/Uiw6O5xk8c/Ot7ZGFDaTRDf2Bz8AdWA4DvpAgCJVKt8arw==}
+    engines: {node: '>=12'}
     dev: false
 
   /check-more-types/2.24.0:
