@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsOptional, IsString, IsUUID } from 'class-validator';
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -9,32 +9,33 @@ import {
 
 import { User } from '@pagerr/api-interfaces';
 
-@Entity()
+@Entity({ name: 'user' })
 export class UserEntity implements User {
   @PrimaryGeneratedColumn('uuid')
-  @IsOptional()
-  @IsString()
-  @IsUUID()
-  public id?: string;
+  public id: string;
 
   @Column({ unique: true })
-  @IsString()
-  @IsEmail()
   public email: string;
 
-  @Column()
-  @IsString()
+  @Column({ unique: true })
   public username: string;
 
-  @Column()
-  @IsString()
+  @Column({ nullable: true })
+  @Exclude()
   public password: string;
 
+  @Column({
+    nullable: true
+  })
+  @Exclude()
+  public hashedRefreshToken?: string;
+
+  @Column({ default: false })
+  public isEmailConfirmed: boolean;
+
   @CreateDateColumn()
-  @IsDate()
   public dateCreated: Date;
 
   @UpdateDateColumn()
-  @IsDate()
   public dateUpdated: Date;
 }

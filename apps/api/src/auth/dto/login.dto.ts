@@ -1,10 +1,6 @@
-import { IsEmail, IsNotEmpty, IsString, Matches, MinLength } from 'class-validator';
+import { IsNotEmpty, IsString, Matches, MinLength } from 'class-validator';
 
-export class CreateUserDto {
-  @IsString()
-  @IsEmail()
-  public email: string;
-
+export class LoginDto {
   @IsString()
   @IsNotEmpty()
   public username: string;
