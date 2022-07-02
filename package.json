@@ -21,13 +21,14 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
+    "build": "nx run frontend:build && nx run api:build",
+    "test": "nx run frontend:test && nx run api:test",
     "semantic-release": "semantic-release",
     "prepare": "husky install",
     "lint": "lint-staged",
     "format": "prettier \"**/*.ts\"  \"**/*.json\" --ignore-path ./.prettierignore --write",
-    "cz": "cz"
+    "cz": "cz",
+    "release": "semantic-release --ci false"
   },
   "engines": {
     "node": ">=18",
