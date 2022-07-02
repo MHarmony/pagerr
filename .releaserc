@@ -13,7 +13,12 @@
         "npmPublish": false
       }
     ],
-    "@semantic-release/git",
+    [
+      "@semantic-release/git",
+      {
+        "message": "chore(api,api-interfaces,frontend,frontend-e2e): ${nextRelease.version}[skip ci]\n\nSee CHANGELOG"
+      }
+    ],
     "@semantic-release/github"
   ]
 }
