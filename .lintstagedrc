@@ -1,0 +1,9 @@
+{
+  "**/*.ts": [
+    "prettier --ignore-path ./.prettierignore --write",
+    "eslint --fix"
+  ],
+  "**/.*json": [
+    "prettier --ignore-path ./.prettierignore --write"
+  ]
+}
