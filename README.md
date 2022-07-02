@@ -12,7 +12,7 @@ pagerr is a book tracking app.
 
 ## Questions
 
-For questions and support please contact [contact@mharmony.io](contact@mharmony.io). The issue list of this repo is **exclusively** for bug reports and feature requests.
+For questions and support please contact [contact@mharmony.io](mailto:contact@mharmony.io). The issue list of this repo is **exclusively** for bug reports and feature requests.
 
 ## Issues
 
