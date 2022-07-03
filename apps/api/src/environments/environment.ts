@@ -37,5 +37,9 @@ export const environment = {
   },
   twoFactor: {
     appName: process.env['TWO_FACTOR_AUTH_APP_NAME']
+  },
+  tls: {
+    cert: process.env['CERT_PATH'],
+    key: process.env['KEY_PATH']
   }
 };

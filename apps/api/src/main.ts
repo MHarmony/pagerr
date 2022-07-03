@@ -9,6 +9,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as etag from 'etag';
+import { readFileSync } from 'fs';
 import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
@@ -17,6 +18,10 @@ import { CustomLogger } from './log/logger/custom-logger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    httpsOptions: {
+      cert: readFileSync(environment.tls.cert),
+      key: readFileSync(environment.tls.key)
+    },
     bufferLogs: true
   });
 
