@@ -4,9 +4,11 @@ import {
   VersioningType
 } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
+import * as etag from 'etag';
 import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
@@ -14,7 +16,7 @@ import { environment } from './environments/environment';
 import { CustomLogger } from './log/logger/custom-logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bufferLogs: true
   });
 
@@ -38,6 +40,9 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
     defaultVersion: '1'
+  });
+  app.set('etag', (content: string | Buffer) => {
+    return etag(content);
   });
 
   const swaggerConfig = new DocumentBuilder()

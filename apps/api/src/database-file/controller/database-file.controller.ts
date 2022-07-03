@@ -39,8 +39,7 @@ export class DatabaseFileController {
     const stream = Readable.from(file.data);
 
     response.set({
-      'Content-Disposition': `inline; filename="${file.filename}"`,
-      'Content-Type': 'image'
+      'Content-Disposition': `inline; filename="${file.filename}"`
     });
 
     return new StreamableFile(stream);
