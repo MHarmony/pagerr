@@ -34,5 +34,8 @@ export const environment = {
       pass: process.env['EMAIL_PASSWORD']
     },
     confirmationUrl: 'http://localhost:4200/confirm-email'
+  },
+  twoFactor: {
+    appName: process.env['TWO_FACTOR_AUTH_APP_NAME']
   }
 };

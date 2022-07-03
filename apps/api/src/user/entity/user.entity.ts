@@ -35,6 +35,18 @@ export class UserEntity implements User {
   @Exclude()
   public hashedRefreshToken?: string;
 
+  @Column({ nullable: true })
+  @Exclude()
+  public twoFactorAuthSecret?: string;
+
+  @Column({ default: false })
+  @ApiProperty({
+    description: 'Is the user using 2FA?',
+    default: false,
+    example: false
+  })
+  public isTwoFactorAuthEnabled: boolean;
+
   @Column({ default: false })
   @ApiProperty({
     description: "Is the user's email confirmed?",

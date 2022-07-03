@@ -41,8 +41,11 @@ export class AuthService {
     }
   }
 
-  public getCookieWithJwtAccessToken(userId: string): string {
-    const payload: TokenPayload = { userId };
+  public getCookieWithJwtAccessToken(
+    userId: string,
+    isTwoFactorAuthenticated = false
+  ): string {
+    const payload: TokenPayload = { userId, isTwoFactorAuthenticated };
     const token = this.jwtService.sign(payload, {
       secret: environment.jwt.secret,
       expiresIn: `${environment.jwt.expires}s`

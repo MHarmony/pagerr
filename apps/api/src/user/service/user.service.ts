@@ -91,4 +91,16 @@ export class UserService {
       }
     );
   }
+
+  public async setTwoFactorAuthSecret(secret: string, id: string) {
+    return this.userRepository.update(id, {
+      twoFactorAuthSecret: secret
+    });
+  }
+
+  public async turnOnTwoFactorAuth(id: string) {
+    return this.userRepository.update(id, {
+      isTwoFactorAuthEnabled: true
+    });
+  }
 }

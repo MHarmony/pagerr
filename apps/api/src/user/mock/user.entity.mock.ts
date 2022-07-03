@@ -6,6 +6,7 @@ export const userMock: UserEntity = {
   email: 'user@email.com',
   username: 'johndoe',
   password: 'hash',
+  isTwoFactorAuthEnabled: false,
   isEmailConfirmed: false,
   dateCreated: new Date(),
   dateUpdated: new Date()
