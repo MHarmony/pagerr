@@ -1,4 +1,4 @@
-import { CacheModule, MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from '../auth/auth.module';
@@ -19,7 +19,6 @@ import { UserModule } from '../user/user.module';
       ttl: environment.throttler.ttl,
       limit: environment.throttler.limit
     }),
-    CacheModule.register(),
     DatabaseModule,
     EmailModule,
     EmailConfirmationModule,

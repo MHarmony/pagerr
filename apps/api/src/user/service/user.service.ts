@@ -1,14 +1,18 @@
 import {
-  HttpException,
-  HttpStatus,
+  CACHE_MANAGER,
+  Inject,
   Injectable,
-  InternalServerErrorException
+  InternalServerErrorException,
+  NotFoundException
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compare, hash } from 'bcrypt';
+import { Cache } from 'cache-manager';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { DatabaseFileService } from '../../database-file/service/database-file.service';
+import { GET_USERS_CACHE_KEY } from '../constants/user.constants';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserEntity } from '../entity/user.entity';
 
 @Injectable()
@@ -17,7 +21,8 @@ export class UserService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly databaseFileService: DatabaseFileService,
-    private readonly datasource: DataSource
+    private readonly datasource: DataSource,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
 
   public async create(createUserDto: CreateUserDto): Promise<UserEntity> {
@@ -28,6 +33,10 @@ export class UserService {
     return newUser;
   }
 
+  public async get(): Promise<UserEntity[]> {
+    return this.userRepository.find();
+  }
+
   public async getByEmail(email: string): Promise<UserEntity> {
     const user = this.userRepository.findOneBy({ email });
 
@@ -35,10 +44,7 @@ export class UserService {
       return user;
     }
 
-    throw new HttpException(
-      'User with this email does not exist',
-      HttpStatus.NOT_FOUND
-    );
+    throw new NotFoundException('User with this email does not exist');
   }
 
   public async getById(id: string): Promise<UserEntity> {
@@ -48,7 +54,7 @@ export class UserService {
       return user;
     }
 
-    throw new HttpException('User with this ID does not exist', HttpStatus.NOT_FOUND);
+    throw new NotFoundException('User with this ID does not exist');
   }
 
   public async getByUsername(username: string): Promise<UserEntity> {
@@ -58,10 +64,31 @@ export class UserService {
       return user;
     }
 
-    throw new HttpException(
-      'User with this username does not exist',
-      HttpStatus.NOT_FOUND
-    );
+    throw new NotFoundException('User with this username does not exist');
+  }
+
+  public async update(id: string, updateUserDto: UpdateUserDto): Promise<UserEntity> {
+    await this.userRepository.update(id, updateUserDto);
+
+    const updatedUser = await this.userRepository.findOneBy({ id });
+
+    if (updatedUser) {
+      await this.clearCache();
+
+      return updatedUser;
+    }
+
+    throw new NotFoundException('User with this ID does not exist');
+  }
+
+  public async delete(id: string): Promise<void> {
+    const deleteResponse = await this.userRepository.delete(id);
+
+    if (!deleteResponse.affected) {
+      throw new NotFoundException('User with this ID does not exist');
+    }
+
+    await this.clearCache();
   }
 
   public async setCurrentRefreshToken(refreshToken: string, id: string): Promise<void> {
@@ -150,5 +177,15 @@ export class UserService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  private async clearCache() {
+    const keys = await this.cacheManager.store.keys();
+
+    keys.forEach((key: string) => {
+      if (key.startsWith(GET_USERS_CACHE_KEY)) {
+        this.cacheManager.del(key);
+      }
+    });
   }
 }
