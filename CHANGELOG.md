@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/MHarmony/pagerr/compare/v1.4.0...v1.5.0) (2022-07-03)
+
+
+### Features
+
+* **api:** role auth ([9034c5c](https://github.com/MHarmony/pagerr/commit/9034c5c424be88b99e81fed75a7c6d33549a1eee))
+
 # [1.4.0](https://github.com/MHarmony/pagerr/compare/v1.3.0...v1.4.0) (2022-07-03)
 
 
