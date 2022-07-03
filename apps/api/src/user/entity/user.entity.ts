@@ -11,7 +11,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from '@pagerr/api-interfaces';
+import { Role, User } from '@pagerr/api-interfaces';
 import { DatabaseFileEntity } from '../../database-file/entity/database-file.entity';
 
 @Entity({ name: 'user' })
@@ -31,6 +31,19 @@ export class UserEntity implements User {
   @Column({ nullable: true })
   @Exclude()
   public password: string;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.USER
+  })
+  @ApiProperty({
+    description: "The user's role",
+    enum: Role,
+    default: Role.USER,
+    example: Role.USER
+  })
+  public role: Role;
 
   @JoinColumn({ name: 'avatarId' })
   @OneToOne(() => DatabaseFileEntity, {

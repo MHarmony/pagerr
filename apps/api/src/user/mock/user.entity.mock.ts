@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { UserEntity } from '../entity/user.entity';
+import { Role } from '@pagerr/api-interfaces';
 
 export const userMock: UserEntity = {
   id: uuidv4(),
@@ -8,6 +9,7 @@ export const userMock: UserEntity = {
   password: 'hash',
   isTwoFactorAuthEnabled: false,
   isEmailConfirmed: false,
+  role: Role.USER,
   dateCreated: new Date(),
   dateUpdated: new Date()
 };
