@@ -4,9 +4,9 @@ import {
   VersioningType
 } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
-import * as csurf from 'csurf';
 import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
@@ -30,7 +30,6 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(compression());
   app.use(helmet());
-  app.use(csurf());
 
   app.enableCors({
     origin: environment.frontendUrl,
@@ -40,6 +39,15 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: '1'
   });
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('pagerr API')
+    .setDescription('API for the pagerr book tracking application')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(environment.port);
 }

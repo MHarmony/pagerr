@@ -3,6 +3,8 @@ export interface User {
   email: string;
   username: string;
   password: string;
+  hashedRefreshToken?: string;
+  isEmailConfirmed: boolean;
   dateCreated: Date;
   dateUpdated: Date;
 }
