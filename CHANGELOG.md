@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/MHarmony/pagerr/compare/v1.6.0...v1.7.0) (2022-07-03)
+
+
+### Features
+
+* **api:** add chat ([2a58991](https://github.com/MHarmony/pagerr/commit/2a589915543cda7501da2d1546d2ae7abf76bd69))
+
 # [1.6.0](https://github.com/MHarmony/pagerr/compare/v1.5.0...v1.6.0) (2022-07-03)
 
 
