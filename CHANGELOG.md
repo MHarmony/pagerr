@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/MHarmony/pagerr/compare/v1.5.0...v1.6.0) (2022-07-03)
+
+
+### Features
+
+* **api:** use etag for user avatars ([fb03b50](https://github.com/MHarmony/pagerr/commit/fb03b50421f8883e5a9cbffff058e83c9f3814db))
+
 # [1.5.0](https://github.com/MHarmony/pagerr/compare/v1.4.0...v1.5.0) (2022-07-03)
 
 
