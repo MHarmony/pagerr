@@ -5,5 +5,5 @@ export class ConfirmEmailDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ description: 'The confirmation token', example: 'supersecrettoken' })
-  token: string;
+  public token: string;
 }

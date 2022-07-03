@@ -1,17 +1,16 @@
 import {
   Body,
-  ClassSerializerInterceptor,
   Controller,
   HttpCode,
   Post,
   Req,
   Res,
   UnauthorizedException,
-  UseGuards,
-  UseInterceptors
+  UseGuards
 } from '@nestjs/common';
 import { ApiExcludeController } from '@nestjs/swagger';
 import { Response } from 'express';
+import { UserEntity } from '../../user/entity/user.entity';
 import { UserService } from '../../user/service/user.service';
 import { TwoFactorAuthCodeDto } from '../dto/two-factor-auth-code.dto';
 import { JwtGuard } from '../guard/jwt.guard';
@@ -20,7 +19,6 @@ import { AuthService } from '../service/auth.service';
 import { TwoFactorAuthService } from '../service/two-factor-auth.service';
 
 @Controller('twoFactorAuth')
-@UseInterceptors(ClassSerializerInterceptor)
 @ApiExcludeController()
 export class TwoFactorAuthController {
   constructor(
@@ -31,7 +29,10 @@ export class TwoFactorAuthController {
 
   @Post('generate')
   @UseGuards(JwtGuard)
-  async register(@Res() response: Response, @Req() request: RequestWithUser) {
+  public async register(
+    @Res() response: Response,
+    @Req() request: RequestWithUser
+  ): Promise<unknown> {
     const { otpAuthUrl } = await this.twoFactorAuthService.generateTwoFactorAuthSecret(
       request.user
     );
@@ -42,10 +43,10 @@ export class TwoFactorAuthController {
   @Post('turnOn')
   @HttpCode(200)
   @UseGuards(JwtGuard)
-  async turnOnTwoFactorAuth(
+  public async turnOnTwoFactorAuth(
     @Req() request: RequestWithUser,
     @Body() { twoFactorAuthCode }: TwoFactorAuthCodeDto
-  ) {
+  ): Promise<void> {
     const isCodeValid = this.twoFactorAuthService.isTwoFactorAuthCodeValid(
       twoFactorAuthCode,
       request.user
@@ -61,10 +62,10 @@ export class TwoFactorAuthController {
   @Post('authenticate')
   @HttpCode(200)
   @UseGuards(JwtGuard)
-  async authenticate(
+  public async authenticate(
     @Req() request: RequestWithUser,
     @Body() { twoFactorAuthCode }: TwoFactorAuthCodeDto
-  ) {
+  ): Promise<UserEntity> {
     const isCodeValid = this.twoFactorAuthService.isTwoFactorAuthCodeValid(
       twoFactorAuthCode,
       request.user

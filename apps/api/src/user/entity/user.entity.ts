@@ -3,18 +3,21 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
-import { v4 as uuid4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '@pagerr/api-interfaces';
+import { DatabaseFileEntity } from '../../database-file/entity/database-file.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity implements User {
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty({ description: "The user's ID", example: uuid4() })
+  @ApiProperty({ description: "The user's ID", example: uuidv4() })
   public id: string;
 
   @Column({ unique: true })
@@ -28,6 +31,20 @@ export class UserEntity implements User {
   @Column({ nullable: true })
   @Exclude()
   public password: string;
+
+  @JoinColumn({ name: 'avatarId' })
+  @OneToOne(() => DatabaseFileEntity, {
+    nullable: true
+  })
+  public avatar?: DatabaseFileEntity;
+
+  @Column({ nullable: true })
+  @ApiProperty({
+    description: "The user's avatar ID",
+    example: uuidv4(),
+    required: false
+  })
+  public avatarId?: string;
 
   @Column({
     nullable: true

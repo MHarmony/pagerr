@@ -1,7 +1,13 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compare, hash } from 'bcrypt';
-import { Repository, UpdateResult } from 'typeorm';
+import { DataSource, Repository, UpdateResult } from 'typeorm';
+import { DatabaseFileService } from '../../database-file/service/database-file.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UserEntity } from '../entity/user.entity';
 
@@ -9,7 +15,9 @@ import { UserEntity } from '../entity/user.entity';
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
+    private readonly userRepository: Repository<UserEntity>,
+    private readonly databaseFileService: DatabaseFileService,
+    private readonly datasource: DataSource
   ) {}
 
   public async create(createUserDto: CreateUserDto): Promise<UserEntity> {
@@ -102,5 +110,45 @@ export class UserService {
     return this.userRepository.update(id, {
       isTwoFactorAuthEnabled: true
     });
+  }
+
+  public async addAvatar(
+    id: string,
+    imageBuffer: Buffer,
+    filename: string
+  ): Promise<void> {
+    const queryRunner = this.datasource.createQueryRunner();
+
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const user = await queryRunner.manager.findOneBy(UserEntity, { id });
+      const currentAvatarId = user.avatarId;
+      const avatar = await this.databaseFileService.uploadWithQueryRunner(
+        imageBuffer,
+        filename,
+        queryRunner
+      );
+
+      await queryRunner.manager.update(UserEntity, id, {
+        avatarId: avatar.id
+      });
+
+      if (currentAvatarId) {
+        await this.databaseFileService.deleteWithQueryRunner(
+          currentAvatarId,
+          queryRunner
+        );
+      }
+
+      await queryRunner.commitTransaction();
+    } catch {
+      await queryRunner.rollbackTransaction();
+
+      throw new InternalServerErrorException();
+    } finally {
+      await queryRunner.release();
+    }
   }
 }
