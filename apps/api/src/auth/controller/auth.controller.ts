@@ -43,7 +43,11 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalGuard)
   @Post('login')
-  @ApiOperation({ description: 'Log in a user', summary: 'Log in a user' })
+  @ApiOperation({
+    description: 'Log in a user',
+    summary: 'Log in a user',
+    tags: ['login', 'post']
+  })
   @ApiBody({ type: LoginDto })
   @ApiOkResponse({ description: 'Successfully logged in', type: UserEntity })
   @ApiInternalServerErrorResponse({ description: 'An error occurred while logging in' })
@@ -66,7 +70,11 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(JwtGuard)
   @Post('logout')
-  @ApiOperation({ description: 'Log out a user', summary: 'Log out a user' })
+  @ApiOperation({
+    description: 'Log out a user',
+    summary: 'Log out a user',
+    tags: ['logout', 'post']
+  })
   @ApiOkResponse({ description: 'Successfully logged out' })
   @ApiInternalServerErrorResponse({
     description: 'An error occurred while logging out'
@@ -78,7 +86,11 @@ export class AuthController {
 
   @UseGuards(JwtGuard)
   @Get()
-  @ApiOperation({ description: 'Authenticate a user', summary: 'Authenticate a user' })
+  @ApiOperation({
+    description: 'Authenticate a user',
+    summary: 'Authenticate a user',
+    tags: ['get']
+  })
   @ApiOkResponse({
     description: 'Successfully authenticated the user',
     type: UserEntity
@@ -94,7 +106,8 @@ export class AuthController {
   @Get('refresh')
   @ApiOperation({
     description: "Refresh a user's access",
-    summary: "Refresh a user's access"
+    summary: "Refresh a user's access",
+    tags: ['refresh', 'get']
   })
   @ApiOkResponse({
     description: "Successfully refreshed the user's access",

@@ -58,7 +58,8 @@ export class UserController {
   @CacheTTL(120)
   @ApiOperation({
     description: 'Get all users',
-    summary: 'Get all users'
+    summary: 'Get all users',
+    tags: ['get']
   })
   @ApiOkResponse({
     description: 'Successfully retrieved all users',
@@ -76,7 +77,8 @@ export class UserController {
   @UseGuards(JwtGuard)
   @ApiOperation({
     description: 'Get a user by ID',
-    summary: 'Get a user by ID'
+    summary: 'Get a user by ID',
+    tags: ['get']
   })
   @ApiOkResponse({ description: 'Successfully retrieved the user', type: UserEntity })
   @ApiNotFoundResponse({ description: 'The user does not exist' })
@@ -92,7 +94,8 @@ export class UserController {
   @UseGuards(JwtGuard)
   @ApiOperation({
     description: 'Get a user by email',
-    summary: 'Get a user by email'
+    summary: 'Get a user by email',
+    tags: ['get']
   })
   @ApiOkResponse({ description: 'Successfully retrieved the user', type: UserEntity })
   @ApiNotFoundResponse({ description: 'The user does not exist' })
@@ -107,7 +110,8 @@ export class UserController {
   @UseGuards(JwtGuard)
   @ApiOperation({
     description: 'Get a user by username',
-    summary: 'Get a user by username'
+    summary: 'Get a user by username',
+    tags: ['get']
   })
   @ApiOkResponse({ description: 'Successfully retrieved the user', type: UserEntity })
   @ApiNotFoundResponse({ description: 'The user does not exist' })
@@ -138,7 +142,8 @@ export class UserController {
   @UseGuards(JwtGuard)
   @ApiOperation({
     description: 'Get an avatar for a user',
-    summary: 'Get an avatar for a user'
+    summary: 'Get an avatar for a user',
+    tags: ['avatar', 'get']
   })
   @ApiOkResponse({ description: 'Successfully retrieved the avatar' })
   @ApiNotFoundResponse({ description: 'The user does not have an avatar' })
@@ -169,7 +174,8 @@ export class UserController {
   @UseGuards(JwtGuard)
   @ApiOperation({
     description: 'Add an avatar for the current user',
-    summary: 'Add an avatar for the current user'
+    summary: 'Add an avatar for the current user',
+    tags: ['avatar', 'post']
   })
   @ApiConsumes('multipart/form-data')
   @ApiCreatedResponse({ description: 'Successfully added the avatar' })

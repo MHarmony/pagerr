@@ -18,7 +18,8 @@ export class HealthController {
   @Get()
   @ApiOperation({
     description: 'Get the health of pagerr services',
-    summary: 'Get the health of pagerr services'
+    summary: 'Get the health of pagerr services',
+    tags: ['get']
   })
   @HealthCheck()
   public check(): Promise<HealthCheckResult> {

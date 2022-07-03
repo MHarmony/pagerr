@@ -36,7 +36,16 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.use(cookieParser());
   app.use(compression());
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: [`'self'`],
+          scriptSrc: [`'self'`, `https: 'unsafe-inline'`]
+        }
+      }
+    })
+  );
 
   app.enableCors({
     origin: environment.frontendUrl,
@@ -57,7 +66,15 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    customSiteTitle: 'pagerr - API Documentation',
+    swaggerOptions: {
+      deepLinking: true,
+      filter: true,
+      tagsSorter: 'alpha',
+      operationsSorter: 'alpha'
+    }
+  });
 
   await app.listen(environment.port);
 }

@@ -19,7 +19,8 @@ export class DatabaseFileController {
   @Get(':id')
   @ApiOperation({
     description: 'Get a database file by ID',
-    summary: 'Get a database file by ID'
+    summary: 'Get a database file by ID',
+    tags: ['get']
   })
   @ApiParam({ name: 'id', type: 'string', format: 'uuid' })
   @ApiOkResponse({
