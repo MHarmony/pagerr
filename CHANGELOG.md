@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/MHarmony/pagerr/compare/v1.2.0...v1.3.0) (2022-07-03)
+
+
+### Features
+
+* **api:** add 2fa ([7475ce3](https://github.com/MHarmony/pagerr/commit/7475ce30cac2b50d5bf87928c0791622fa41e0d3))
+
 # [1.2.0](https://github.com/MHarmony/pagerr/compare/v1.1.0...v1.2.0) (2022-07-02)
 
 
