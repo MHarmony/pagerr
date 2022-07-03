@@ -2,6 +2,7 @@ import { CacheModule, MiddlewareConsumer, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from '../auth/auth.module';
+import { ChatModule } from '../chat/chat.module';
 import { DatabaseFileModule } from '../database-file/database-file.module';
 import { DatabaseModule } from '../database/database.module';
 import { EmailConfirmationModule } from '../email-confirmation/email-confirmation.module';
@@ -26,7 +27,8 @@ import { UserModule } from '../user/user.module';
     AuthModule,
     LogModule,
     HealthModule,
-    DatabaseFileModule
+    DatabaseFileModule,
+    ChatModule
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }]
 })

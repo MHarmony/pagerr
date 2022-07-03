@@ -1,7 +1,7 @@
 import { DatabaseFile } from '@pagerr/api-interfaces';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'database_file' })
 export class DatabaseFileEntity implements DatabaseFile {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
