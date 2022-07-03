@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/MHarmony/pagerr/compare/v1.7.0...v1.8.0) (2022-07-03)
+
+
+### Features
+
+* **api:** user controller additions ([d8b0b73](https://github.com/MHarmony/pagerr/commit/d8b0b73e737b95854e7d798e67743fc6f271fe6f))
+
 # [1.7.0](https://github.com/MHarmony/pagerr/compare/v1.6.0...v1.7.0) (2022-07-03)
 
 
