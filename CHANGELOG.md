@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/MHarmony/pagerr/compare/v1.3.0...v1.4.0) (2022-07-03)
+
+
+### Features
+
+* **api:** upload avatars ([4b9745b](https://github.com/MHarmony/pagerr/commit/4b9745b2f3219e69395773624cac8a7459423f29))
+
 # [1.3.0](https://github.com/MHarmony/pagerr/compare/v1.2.0...v1.3.0) (2022-07-03)
 
 
