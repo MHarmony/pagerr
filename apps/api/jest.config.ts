@@ -12,5 +12,9 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest'
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/api'
+  coverageDirectory: '../../coverage/apps/api',
+  moduleNameMapper: {
+    '^uuid$': require.resolve('uuid'),
+    '^typeorm$': require.resolve('typeorm')
+  }
 };
