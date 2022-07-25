@@ -12,6 +12,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 import { AppModule } from './app/app.module';
+import { PrismaService } from './prisma/prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -30,6 +31,9 @@ async function bootstrap() {
     })
   );
   const configService = app.get(ConfigService);
+  const prismaService = app.get(PrismaService);
+
+  await prismaService.enableShutdownHooks(app);
 
   app.useGlobalPipes(
     new ValidationPipe({
