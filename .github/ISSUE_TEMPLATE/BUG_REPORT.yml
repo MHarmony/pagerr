@@ -1,0 +1,90 @@
+name: "\U0001F41B Bug Report"
+description: "If something isn't working as expected \U0001F914"
+labels: ['needs triage :paperclips:']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## :warning: We use GitHub Issues to track bug reports, feature requests and regressions
+
+        **NOTE:** You don't need to answer questions that you know that aren't relevant.
+
+        ---
+
+  - type: checkboxes
+    attributes:
+      label: 'Is there an existing issue for this?'
+      description: 'Please search [here](../issues?q=is%3Aissue) to see if an issue already exists for the bug you encountered'
+      options:
+        - label: 'I have searched the existing issues'
+          required: true
+
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Current behavior'
+      description: 'How the issue manifests?'
+
+  - type: textarea
+    attributes:
+      label: 'Steps to reproduce'
+      description: |
+        How the issue manifests?
+      placeholder: |
+        1. `pnpm install`
+        2. `pnpm run serve`
+        3. See error...
+
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Expected behavior'
+      description: 'A clear and concise description of what you expected to happend (or code)'
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: checkboxes
+    validations:
+      required: true
+    attributes:
+      label: 'Scope'
+      description: |
+        Which scope (or scopes) do you think your issue is related to?
+      options:
+        - label: '<code>api</code>'
+        - label: '<code>frontend</code>'
+        - label: '<code>frontend-e2e</code>'
+        - label: '<code>libs</code>'
+
+  - type: input
+    attributes:
+      label: 'Node.js version'
+      description: 'Which version of Node.js are you using?'
+      placeholder: '18.0.0'
+
+  - type: checkboxes
+    validations:
+      required: true
+    attributes:
+      label: 'In which operating systems have you tested?'
+      options:
+        - label: macOS
+        - label: Windows
+        - label: Linux
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: textarea
+    attributes:
+      label: 'Other'
+      description: |
+        Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
+        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
