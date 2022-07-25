@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MHarmony/pagerr/compare/v1.1.0...v1.2.0) (2022-07-25)
+
+
+### Features
+
+* **api:** add prisma ([158e785](https://github.com/MHarmony/pagerr/commit/158e785758418df86dbcbac589302c8aae84ffff))
+
 # [1.1.0](https://github.com/MHarmony/pagerr/compare/v1.0.0...v1.1.0) (2022-07-25)
 
 
